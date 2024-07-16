@@ -3,12 +3,12 @@ const cors = require("cors");
 const server = express() ; 
 const mongoose = require("mongoose") ;
 const todoModel = require('./model/modelSchema') ;
-
+server.use(cors());
 
 mongoose.connect("mongodb+srv://newMongoDB:newMongoDB@cluster0.nilhdoh.mongodb.net/mongodbLearn?retryWrites=true&w=majority&appName=Cluster0").then( r => console.log("MongoDB connected")) ;
 server.use(express.json()) ; 
  
-server.use(cors());
+
 
 server.get('/get' ,async (req,res)=>{
     const data = await todoModel.find() ; 
