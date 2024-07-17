@@ -10,21 +10,21 @@ server.use(express.json()) ;
  
 
 
-server.get('/get' ,async (req,res)=>{
+server.get('/' ,async (req,res)=>{
     const data = await todoModel.find() ; 
    console.log(data) ; 
     res.json([data]) ;
     
 })
 
-server.post('/post' , (req,res)=>{
+server.post('/' , (req,res)=>{
     const data = new todoModel(req.body ) ; 
      data.save() ; 
     res.json(data).status(201) ; 
 })
 
 
-server.put('/put/:id' ,async (req,res) =>{
+server.put('/:id' ,async (req,res) =>{
     const id = req.params.id ; 
     console.log(id)
     const data = await todoModel.findByIdAndUpdate({_id : id } , {done : true} )
@@ -33,7 +33,7 @@ server.put('/put/:id' ,async (req,res) =>{
      
 })
 
-server.put('/put1/:id' ,async (req,res) =>{
+server.put('/:id' ,async (req,res) =>{
     const id = req.params.id ; 
     console.log(id)
     const data = await todoModel.findByIdAndUpdate({_id : id } , {done : false} )
@@ -42,7 +42,7 @@ server.put('/put1/:id' ,async (req,res) =>{
      
 })
 
-server.delete('/delete/:id' , async (req,res) =>{
+server.delete('/:id' , async (req,res) =>{
     const id  = req.params.id ; 
     const data = await todoModel.findOneAndDelete( {_id : id } ) ;
     res.json() ;
